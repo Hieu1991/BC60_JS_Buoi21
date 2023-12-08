@@ -50,6 +50,7 @@ function renderUI(data) {
             <td>${nv.loaiNhanVien}</td>
             <td>
               <button class="btn btn-success" onclick = "handleDelete('${nv.tknv}')">Delete</button>
+              <button class="btn btn-danger" onclick = "handleEdit('${nv.tknv}')">Edit</button>
             </td>
         </tr>
     `;
@@ -67,10 +68,42 @@ getEle("btnThemNV").onclick = function handleThemNV() {
 
   setLocalStorage();
 };
-
+// xóa nhân viên
 function handleDelete(id) {
   dsnv.xoaNV(id);
   console.log(dsnv.arr);
+
+  renderUI(dsnv.arr);
+
+  setLocalStorage();
+}
+//xuất thông tin nhân viên lên lại UI
+function handleEdit(id) {
+  //ấn nút edit auto mở cửa sổ
+  var autoClick = getEle("btnThem");
+  autoClick.click();
+  const nv = dsnv.layThongTinTuEdit(id);
+
+  if (nv !== null) {
+    getEle("tknv").value = nv.tknv;
+    getEle("tknv").disabled = true;
+    getEle("name").value = nv.name;
+    getEle("email").value = nv.email;
+    getEle("password").value = nv.password;
+    getEle("datepicker").value = nv.datepicker;
+    getEle("luongCB").value = nv.luongCB;
+    getEle("chucvu").value = nv.chucvu;
+    getEle("gioLam").value = nv.gioLam;
+  }
+
+  getEle("btnThemNV").style.display = "none";
+}
+
+//Cập nhật thông tin chỉnh nhân viên
+function handleCapNhatNV() {
+  const nv = layThongTinNhanVien();
+
+  dsnv.editNV(nv);
 
   renderUI(dsnv.arr);
 

@@ -26,4 +26,19 @@ function DSNV() {
       this.arr.splice(index, 1);
     }
   };
+  //lấy thông tin nhân viên từ Edit
+  this.layThongTinTuEdit = function (id) {
+    const index = this.timViTri(id);
+    if (index !== -1) {
+      return this.arr[index];
+    }
+    return null;
+  };
+  //chỉnh sửa nhân viên
+  this.editNV = function (nv) {
+    const index = this.timViTri(nv.tknv);
+    if (index !== -1) {
+      this.arr[index] = nv;
+    }
+  };
 }
