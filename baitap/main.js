@@ -110,6 +110,15 @@ function handleCapNhatNV() {
   setLocalStorage();
 }
 
+//tìm kiếm nhân viên
+getEle("searchName").addEventListener("keyup", function () {
+  const keyword = getEle("searchName").value;
+
+  const mangTimKiem = dsnv.timNV(keyword);
+
+  renderUI(mangTimKiem);
+});
+
 //lưu dữ liệu thêm nhân viên xuống localStorage của brower
 function setLocalStorage() {
   //chuyển dataJson sang string

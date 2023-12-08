@@ -41,4 +41,23 @@ function DSNV() {
       this.arr[index] = nv;
     }
   };
+
+  //tìm kiếm nhân viên
+
+  this.timNV = function (keyword) {
+    var mangTimKiem = [];
+    for (var i = 0; i < this.arr.length; i++) {
+      const nv = this.arr[i];
+
+      const keywordLower = keyword.toLowerCase();
+
+      const tenNVLower = nv.name.toLowerCase();
+
+      const indexLower = tenNVLower.indexOf(keywordLower);
+      if (indexLower !== -1) {
+        mangTimKiem.push(nv);
+      }
+    }
+    return mangTimKiem;
+  };
 }
